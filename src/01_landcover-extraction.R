@@ -53,11 +53,24 @@ arcpy$PairwiseClip_analysis(in_features = "D:/backfill//veg61hf2018_bdqt.gdb/veg
                     out_feature_class = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m.shp")
 
 # Intersect the two layers to maintain site information
+arcpy$Intersect_analysis(in_features = c("C:/Users/ballen/Desktop/ANBC/data/base/sites/ANBC_surveys_2018_800m.shp",
+                                         "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m.shp"),
+                         out_feature_class = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
 
-# Load the processed landcover, adjust column names, and save
+# Calculate proper areas, adjust column names
+landcover.in <- read_sf("C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
+landcover.in$Shape_Area <- st_area(landcover.in) # ArcGIS function doesn't like reticulate, same areas though
+colnames(landcover.in)[c(24,31,34)] <- c("Soil_Type_1", "Origin_Year", "Combined_ChgByCWCS") 
 
-data.in <- read.dbf("landcover/landcover_hfi_2018_800m.dbf")
+write_sf(landcover.in, dsn = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
 
-write.csv(data.in, file = "data/processed/landcover/veg-hf_2018_800m.csv", row.names = FALSE)
+# Convert to data frame
+landcover.in <- as.data.frame(landcover.in)
+landcover.in <- landcover.in[, c(1:40)]
+landcover.in$Shape_Area <- as.numeric(landcover.in$Shape_Area)
+write.csv(landcover.in, file = "data/processed/landcover/veg-hf_2018_800m.csv", row.names = FALSE)
+
+rm(list=ls())
+gc()
 
 
