@@ -1,0 +1,21 @@
+---
+title: "Agapostemon femoratus"
+layout: single
+classes: wide
+permalink: /profiles/species/Agapostemon femoratus
+author_profile: false
+sidebar:
+  nav: "profiles"
+---
+
+<h2>Detection</h2>
+
+<a href="/assets/figures/species/Agapostemon femoratus/range-map.png">
+<img src="/assets/figures/species/Agapostemon femoratus/range-map.png" height = "1200" width = "800">
+</a>
+
+<a href="/profiles/species/Vespid wasp" class="pagination--pager" title="PreviousName">Previous</a> <a href="/profiles/species/Agapostemon obliquus" class="pagination--pager" title="NextName">Next</a>
+
+<p>&nbsp;</p>
+
+{% include comment-section.html %}
