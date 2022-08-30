@@ -1,7 +1,11 @@
+_site
+.sass-cache
+.jekyll-metadata
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+Gemfile.lock
 beta/**
 data/**
 results/**
