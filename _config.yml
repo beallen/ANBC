@@ -101,9 +101,9 @@ tag_archive:
   path: /tags/
 
 # Implementation of comment section. Update comment the fields with the appropriate form information
-comment-read: https://docs.google.com/spreadsheets/d/1qT7oKBimB90wWSMzUyevfBKIfrF6lsi9gI4eBiFlrP0
-comment-post: https://docs.google.com/forms/d/e/1FAIpQLSeipYCJTf6-R_Z5c6x0YL1ZUjihAaFhq37OVNY-IZalFmtzgQ
-comment-post-fields: [ entry.127720854, entry.2137034832, entry.102720032]
+comment-read: https://docs.google.com/spreadsheets/d/1b9YLX77q0WgZXS5F2cT3bJfZagjKXPDn3rbC0bsK4wU
+comment-post: https://docs.google.com/forms/d/e/1FAIpQLSeQfC6CJULmYQ6m2TN8jSnhMIrowXoaE7hb7UXmhaeRdC0FMg
+comment-post-fields: [ entry.1088208451, entry.224376209, entry.947085007]
 
 google_forms_comments:
   lazy_load_comments: false

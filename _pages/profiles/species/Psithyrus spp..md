@@ -10,8 +10,8 @@ sidebar:
 
 <h2>Detection</h2>
 
-<a href="/assets/figures/species/Psithyrus spp./range-map.png">
-<img src="/assets/figures/species/Psithyrus spp./range-map.png" height = "1200" width = "800">
+<a href="/ANBC/assets/figures/species/Psithyrus spp./range-map.png">
+<img src="/ANBC/assets/figures/species/Psithyrus spp./range-map.png" height = "1200" width = "800">
 </a>
 
 <a href="/profiles/species/Pseudopanurgus aestivalis" class="pagination--pager" title="PreviousName">Previous</a> <a href="/profiles/species/Solitary bee" class="pagination--pager" title="NextName">Next</a>
