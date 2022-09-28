@@ -7,6 +7,14 @@ sidebar:
   nav: "methods"
 ---
 
-Tempor velit sint sunt ipsum tempor enim ad qui ullamco. Est dolore anim ad velit duis dolore minim sunt aliquip amet commodo labore. Ut eu pariatur aute ea aute excepteur laborum. Esse ea esse excepteur minim mollit qui cillum excepteur ex dolore magna. Labore deserunt fugiat incididunt incididunt sint ea. Consequat dolore aute laboris quis proident quis non et est consectetur ex eiusmod sit culpa.
+# Field Surveys
 
-Cupidatat ea do et in excepteur in. Ad nostrud ut est esse eu duis ea sunt eiusmod. Aliquip tempor veniam sint elit fugiat. Velit incididunt laboris amet incididunt labore dolore irure velit excepteur commodo deserunt laborum. Consectetur eu fugiat veniam veniam Lorem labore magna eiusmod. Ea occaecat reprehenderit pariatur consectetur minim labore ut aliquip.
+Surveys were conducted throughout the spring and summer of 2018 across Alberta. In general, blue vane traps were deployed for a period of approximately two weeks. Specimens were then emptied from the trap and stored in glycol until species identification could be completed. The traps were then stored for two weeks, before they were redeployed for another two week survey.
+
+# Species sorting and identification
+
+TBD
+
+# Data analyses
+
+All data analyses were performed using R, with all scripts being made publicly available at https://github.com/beallen/ANBC in the *src* folder. 
