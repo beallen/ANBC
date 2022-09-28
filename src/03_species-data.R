@@ -1,10 +1,10 @@
 #
 # Title: Cleaning of species data and creation of range maps
 # Created: August 30th, 2022
-# Last Updated: August 30th, 2022
+# Last Updated: September 24th, 2022
 # Author: Brandon Allen
 # Objectives: Clean and create basic summaries for the species data
-# Keywords: Notes, Species data, Range maps
+# Keywords: Notes, Species data, Range maps, Use availability, Species Models
 #
 
 #########
@@ -15,6 +15,7 @@
 # 2) Need to identify the accuracy of GPS locations (e.g., location of traps versus fire towers)
 # 3) Some accession values don't have IDs.
 # 4) Some species with IDs don't have lat long coordinates or other site identifiers.
+#
 ################
 # Species data # 
 ################~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
