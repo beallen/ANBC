@@ -6,8 +6,6 @@ main:
     url: /methods/
   - title: "Species Profiles"
     url: /profiles/
-  - title: "Species Communities"
-    url: /communities/
   - title: "Contact"
     url: /contact/
     
