@@ -1,10 +1,10 @@
 #
 # Title: Extraction of landcover information for the ANBC
 # Created: April 14th, 2022
-# Last Updated: April 14th, 2022
+# Last Updated: September 28th, 2022
 # Author: Brandon Allen
-# Objectives: Extract the landcover information for the ANBC survey sites from the 2018 backfilll
-# Keywords: Notes, Landscape extraction
+# Objectives: Extract and summarized the landcover information for all ANBC sites
+# Keywords: Notes, Landscape extraction, Landcover summary
 #
 
 #########
@@ -38,31 +38,38 @@ use_python(python = "C:/Users/ballen/miniconda3/envs/r-reticulate/python.exe")
 # Load arcpy
 arcpy <- import('arcpy') # Successful I think!
 
-# Define the scratch space otherwise functions without defined outputs will fail
-scratch.space <- "C:/Users/ballen/Desktop/ANBC/scratch/"
-arcpy$env$scratchWorkspace <- scratch.space
+# Create geodatabase
+arcpy$CreateFileGDB_management(out_folder_path = paste0(getwd(), "/data/processed/landcover/"), 
+                               out_name = "ANBC_landcover.gdb")
+
+# Define workspace
+arcpy$env$workspace <- paste0(getwd(), "/data/processed/landcover/ANBC_landcover.gdb")
 
 # Create buffer
-arcpy$Buffer_analysis(in_features = "C:/Users/ballen/Desktop/ANBC/data/base/sites/ANBC_surveys_2018.shp", 
-                      out_feature_class = "C:/Users/ballen/Desktop/ANBC/data/base/sites/ANBC_surveys_2018_800m.shp", 
+arcpy$Buffer_analysis(in_features = paste0(getwd(), "/data/base/sites/ANBC_surveys_2018.shp"), 
+                      out_feature_class = "ANBC_surveys_2018_800m", 
                       buffer_distance_or_field = "800 meters")
 
 # Clip to the region
 arcpy$PairwiseClip_analysis(in_features = "D:/backfill//veg61hf2018_bdqt.gdb/veg61hf2018_BDQT_mtos", 
-                    clip_features = "C:/Users/ballen/Desktop/ANBC/data/base/sites/ANBC_surveys_2018_800m.shp", 
-                    out_feature_class = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m.shp")
+                    clip_features = "ANBC_surveys_2018_800m", 
+                    out_feature_class = "landcover_hfi_2018_800m")
 
 # Intersect the two layers to maintain site information
-arcpy$Intersect_analysis(in_features = c("C:/Users/ballen/Desktop/ANBC/data/base/sites/ANBC_surveys_2018_800m.shp",
-                                         "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m.shp"),
-                         out_feature_class = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
+arcpy$Intersect_analysis(in_features = c("ANBC_surveys_2018_800m",
+                                         "landcover_hfi_2018_800m"),
+                         out_feature_class = "landcover_hfi_2018_800m_intersect")
+
+# Repair geometry
+arcpy$RepairGeometry_management(in_features = "landcover_hfi_2018_800m_intersect", 
+                                delete_null = "KEEP_NULL")
+
 
 # Calculate proper areas, adjust column names
-landcover.in <- read_sf("C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
+landcover.in <- read_sf(dsn = paste0(getwd(), "/data/processed/landcover/ANBC_landcover.gdb"),
+                        layer = "landcover_hfi_2018_800m_intersect")
 landcover.in$Shape_Area <- st_area(landcover.in) # ArcGIS function doesn't like reticulate, same areas though
 colnames(landcover.in)[c(24,31,34)] <- c("Soil_Type_1", "Origin_Year", "Combined_ChgByCWCS") 
-
-write_sf(landcover.in, dsn = "C:/Users/ballen/Desktop/ANBC/data/processed/landcover/landcover_hfi_2018_800m_intersect.shp")
 
 # Convert to data frame
 landcover.in <- as.data.frame(landcover.in)
@@ -73,4 +80,7 @@ write.csv(landcover.in, file = "data/processed/landcover/veg-hf_2018_800m.csv", 
 rm(list=ls())
 gc()
 
+#####################
+# Landscape Summary # 
+#####################~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
