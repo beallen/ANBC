@@ -27,34 +27,12 @@ library(ggplot2)
 library(MetBrewer)
 
 # Load data
-load("data/processed/landcover/veg-hf_2018_800m_processed.Rdata")
-veg.lookup <- read.csv("data/lookup/lookup-veg-hf-age-v2020.csv")
-soil.lookup <- read.csv("data/lookup/lookup-soil-hf-v2020.csv")
+load("data/processed/landcover/veg-hf_2018_800m_wide_simplified.Rdata")
 
-# Current vegetation 
-veg.cur <- as.data.frame(as.matrix(d_wide$veg_current))
-veg.cur <- veg.cur / rowSums(veg.cur)
-
-veg.simplified <- data.frame(Vegetation = NA,
-                             Area = NA)
-unique.veg <- unique(veg.lookup$UseAvail_BEA)
-unique.veg <- unique.veg[!(unique.veg %in% "EXCLUDE")]
-
-for(veg in unique.veg) {
-  
-  # Identify columns of interest
-  veg.id <- veg.lookup[veg.lookup$UseAvail_BEA %in% veg, "ID"]
-  
-  veg.simplified <- rbind.data.frame(veg.simplified,
-                                     data.frame(Vegetation = veg,
-                                                Area = sum(veg.cur[, veg.id])))
-  
-}
-
-veg.simplified <- veg.simplified[-1, ]
-
-# Standardize by site area
-veg.simplified$Vegetation <- factor(veg.simplified$Vegetation, levels = veg.simplified$Vegetation)
+# Summarize across sites
+veg.simplified <- colSums(veg.simplified[, -1])
+veg.simplified <- data.frame(Vegetation = factor(names(veg.simplified), levels = names(veg.simplified)),
+                             Area = as.numeric(veg.simplified))
 
 # Visualization
 png(file = paste0("results/figures/landcover-surveys.png"),
