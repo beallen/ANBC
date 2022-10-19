@@ -201,8 +201,6 @@ spp.model <- glm(pa ~ Deciduous + Mixedwood + Pine + Spruce + TreedBogFen + Swam
                  data = model.data, 
                  maxit = 250)
 
-# Has no space/climate!
-
 # Determine basic model fit
 auc(model.data$pa, plogis(predict(spp.model))) # Reasonable fit
 
@@ -286,9 +284,9 @@ boundary.in$Boundary <- "Boundary"
 # Visualize
 #
 # Current Abundance
-png(file = paste0("bombus-mixtus.png"),
-    width = 1800,
-    height = 2400, 
+png(file = paste0("results/figures/bombus-mixtus.png"),
+    height = 2400,
+    width = 1600, 
     res = 300)
 
 cur.map <- ggplot() +
@@ -299,16 +297,49 @@ cur.map <- ggplot() +
   scale_color_gradientn(colors = rev(met.brewer(name = "Hiroshige", n = 100, type = "continuous")), limits = c(0,1), guide = "none") +
   theme_light() +
   theme_abmi(font = "Montserrat") +
-  theme(axis.title = element_text(size=36),
-        axis.text.x = element_text(size=36),
-        axis.text.y = element_text(size=36),
-        title = element_text(size=36),
-        legend.text = element_text(size=36),
-        legend.title = element_text(size=36, lineheight = 0.25, vjust = -6),
+  theme(axis.title = element_text(size=16),
+        axis.text.x = element_text(size=16),
+        axis.text.y = element_text(size=16),
+        title = element_text(size=16),
+        legend.text = element_text(size=14),
+        legend.title = element_blank(),
+        legend.background = element_rect(fill='transparent'),
         axis.line = element_line(colour = "black"),
         panel.border = element_rect(colour = "black", fill=NA, size=1),
-        legend.position = c(0.20, 0.17))
+        legend.position = c(0.25, 0.15))
 
 print(cur.map)
+
+dev.off()
+
+# Habitat only model
+spp.model <- glm(pa ~ Deciduous + Mixedwood + Pine + Spruce + TreedBogFen + Swamp + GrassShrub + Wetland + UrbInd + SoftLin + HardLin + Crop + Pasture + Forestry, 
+                 family = "binomial",
+                 data = model.data, 
+                 maxit = 250)
+
+spp.coef <- data.frame(Habitat = names(spp.model$coefficients),
+                       Probability = plogis(spp.model$coefficients))
+
+spp.coef <- spp.coef[-c(1,11,12), ]
+spp.coef$Habitat <- factor(spp.coef$Habitat, levels = spp.coef$Habitat)
+
+
+# Visualization
+png(file = paste0("results/figures/bombus-coefficient.png"),
+    width = 1500,
+    height = 1500, 
+    res = 300)
+
+ggplot(data = spp.coef, aes(x = Habitat, y = Probability, fill = Habitat)) +
+  geom_bar(stat="identity", fill = met.brewer("Cross", n = 12, type = "continuous")) +
+  ylab("Probability of Occurrence") +
+  theme_light() +
+  theme(axis.title = element_text(size=12),
+        axis.text.x = element_text(size=12, angle = 90, hjust = 1),
+        axis.text.y = element_text(size=12),
+        legend.title = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 
 dev.off()
