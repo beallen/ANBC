@@ -168,7 +168,7 @@ gc()
 
 
 ##################
-# Habitat models # This will need a complete overhaul!!
+# Habitat models # Sort of fixed! But prediction is broken, troubleshoot.
 ##################~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Clear memory
@@ -201,6 +201,8 @@ spp.model <- glm(pa ~ Deciduous + Mixedwood + Pine + Spruce + TreedBogFen + Swam
                  data = model.data, 
                  maxit = 250)
 
+# Has no space/climate!
+
 # Determine basic model fit
 auc(model.data$pa, plogis(predict(spp.model))) # Reasonable fit
 
@@ -211,6 +213,9 @@ unique.veg <- unique.veg[!(unique.veg %in% "EXCLUDE")]
 
 load("data/base/landcover/veghf_w2w_2018_wide_water.RData")
 veg.cur <- as.data.frame(as.matrix(dd_2018$veg_current))
+
+# Convert to proportions
+veg.cur <- veg.cur / rowSums(veg.cur)
 
 veg.data <- data.frame(LinkID = rownames(veg.cur))
 
@@ -247,8 +252,8 @@ rm(dd_2018, lts, ltv)
 load("data/base/landcover/kgrid_table_km.Rdata")
 
 kgrid <- data.frame(LinkID = kgrid$Row_Col,
-                    Latitude = kgrid$POINT_X,
-                    Longitude = kgrid$POINT_Y,
+                    Latitude = kgrid$POINT_Y,
+                    Longitude = kgrid$POINT_X,
                     NaturalRegion = kgrid$NRNAME)
 
 # Remove grassland
@@ -266,6 +271,7 @@ kgrid <- kgrid[kgrid.map$GRID_LABEL, ]
 kgrid.map$Cur <- kgrid$Abundance
 
 # Load the shapefile for the provincial boundary
+library(abmi.themes)
 library(tidyverse)
 boundary.in <- read_sf("data/base/gis/NRNAMEdissolve.shp")
 
@@ -280,7 +286,7 @@ boundary.in$Boundary <- "Boundary"
 # Visualize
 #
 # Current Abundance
-png(file = paste0("test.png"),
+png(file = paste0("bombus-mixtus.png"),
     width = 1800,
     height = 2400, 
     res = 300)
