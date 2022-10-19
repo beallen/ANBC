@@ -1,7 +1,7 @@
 #
 # Title: Extraction of landcover information for the ANBC
 # Created: April 14th, 2022
-# Last Updated: September 28th, 2022
+# Last Updated: October 18th, 2022
 # Author: Brandon Allen
 # Objectives: Extract and summarized the landcover information for all ANBC sites
 # Keywords: Notes, Landscape extraction, Landcover summary
@@ -24,7 +24,6 @@ rm(list=ls())
 gc()
 
 # Load libraries
-library(foreign)
 library(reticulate)
 library(sf)
 
@@ -38,25 +37,21 @@ use_python(python = "C:/Users/ballen/miniconda3/envs/r-reticulate/python.exe")
 # Load arcpy
 arcpy <- import('arcpy') # Successful I think!
 
-# Create geodatabase
-arcpy$CreateFileGDB_management(out_folder_path = paste0(getwd(), "/data/processed/landcover/"), 
-                               out_name = "ANBC_landcover.gdb")
-
-# Define workspace
-arcpy$env$workspace <- paste0(getwd(), "/data/processed/landcover/ANBC_landcover.gdb")
+# Set geodatabase
+arcpy$env$workspace <- paste0(getwd(), "/data/base/sites/ANBC_sites.gdb")
 
 # Create buffer
-arcpy$Buffer_analysis(in_features = paste0(getwd(), "/data/base/sites/ANBC_surveys_2018.shp"), 
-                      out_feature_class = "ANBC_surveys_2018_800m", 
+arcpy$Buffer_analysis(in_features = "site_locations", 
+                      out_feature_class = "site_buffer_800m", 
                       buffer_distance_or_field = "800 meters")
 
 # Clip to the region
 arcpy$PairwiseClip_analysis(in_features = "D:/backfill//veg61hf2018_bdqt.gdb/veg61hf2018_BDQT_mtos", 
-                    clip_features = "ANBC_surveys_2018_800m", 
+                    clip_features = "site_buffer_800m", 
                     out_feature_class = "landcover_hfi_2018_800m")
 
 # Intersect the two layers to maintain site information
-arcpy$Intersect_analysis(in_features = c("ANBC_surveys_2018_800m",
+arcpy$Intersect_analysis(in_features = c("site_buffer_800m",
                                          "landcover_hfi_2018_800m"),
                          out_feature_class = "landcover_hfi_2018_800m_intersect")
 
@@ -64,18 +59,18 @@ arcpy$Intersect_analysis(in_features = c("ANBC_surveys_2018_800m",
 arcpy$RepairGeometry_management(in_features = "landcover_hfi_2018_800m_intersect", 
                                 delete_null = "KEEP_NULL")
 
+arcpy$CalculateGeometryAttributes_management(in_features = "landcover_hfi_2018_800m_intersect", 
+                                             geometry_property = "AREA", 
+                                             area_unit = "SQUARE_METERS")
 
-# Calculate proper areas, adjust column names
-landcover.in <- read_sf(dsn = paste0(getwd(), "/data/processed/landcover/ANBC_landcover.gdb"),
-                        layer = "landcover_hfi_2018_800m_intersect")
-landcover.in$Shape_Area <- st_area(landcover.in) # ArcGIS function doesn't like reticulate, same areas though
-colnames(landcover.in)[c(24,31,34)] <- c("Soil_Type_1", "Origin_Year", "Combined_ChgByCWCS") 
-
+# Recalculated the in ArcGIS (ShapeArea) as it wasn't working through ArcPy
 # Convert to data frame
+landcover.in <- read_sf(dsn = paste0(getwd(), "/data/base/sites/ANBC_sites.gdb"),
+                        layer = "landcover_hfi_2018_800m_intersect")
 landcover.in <- as.data.frame(landcover.in)
-landcover.in <- landcover.in[, c(1:40)]
-landcover.in$Shape_Area <- as.numeric(landcover.in$Shape_Area)
-write.csv(landcover.in, file = "data/processed/landcover/veg-hf_2018_800m.csv", row.names = FALSE)
+landcover.in$Shape_Area <- as.numeric(landcover.in$ShapeArea)
+landcover.in <- landcover.in[, 1:38]
+write.csv(landcover.in, file = "data/base/landcover/veg-hf_2018_800m_long.csv", row.names = FALSE)
 
 rm(list=ls())
 gc()
@@ -83,4 +78,48 @@ gc()
 #####################
 # Landscape Summary # 
 #####################~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Load data
+load("data/processed/landcover/veg-hf_2018_800m_wide.Rdata")
+veg.lookup <- read.csv("data/lookup/lookup-veg-hf-age-v2020.csv")
+
+# Current vegetation 
+veg.cur <- as.data.frame(as.matrix(d_wide$veg_current))
+veg.cur <- veg.cur / rowSums(veg.cur)
+
+unique.veg <- unique(veg.lookup$UseAvail_BEA)
+unique.veg <- unique.veg[!(unique.veg %in% "EXCLUDE")]
+
+veg.data <- data.frame(SiteID = rownames(d_wide$veg_current))
+
+for(veg in unique.veg) {
+  
+  # Identify columns of interest
+  veg.id <- veg.lookup[veg.lookup$UseAvail_BEA %in% veg, "ID"]
+  
+  # Check if row sum will fail
+  if(length(veg.id) == 1) {
+    
+    veg.combined <- data.frame(Veg = veg.cur[, veg.id])
+    
+  } else {
+    
+    veg.combined <- data.frame(Veg = rowSums(veg.cur[, veg.id]))
+    
+  }
+  
+  colnames(veg.combined)[1] <- veg
+  
+  veg.data <- cbind.data.frame(veg.data,
+                                     veg.combined)
+  
+  rm(veg.combined)
+  
+}
+
+# Save the results
+save(veg.data, file = "data/processed/landcover/veg-hf_2018_800m_wide_simplified.Rdata")
+
+rm(list=ls())
+gc()
 
