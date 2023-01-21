@@ -343,3 +343,81 @@ ggplot(data = spp.coef, aes(x = Habitat, y = Probability, fill = Habitat)) +
         panel.border = element_rect(colour = "black", fill=NA, size=1))
 
 dev.off()
+
+
+##################
+# Habitat models # Poisson
+##################~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Clear memory
+rm(list=ls())
+gc()
+
+# Load libraries
+library(pROC)
+
+# Load species and landcover data
+load("data/processed/species/species-abundance.Rdata")
+load("data/processed/landcover/veg-hf_2018_800m_wide_simplified.Rdata")
+
+# Standardize to presence/absence
+spp.data[, -c(1:4)][spp.data[, -c(1:4)] > 1] <- 1
+
+# Filter the species and landcover data to include only sites outside the Grasslands
+site.exclude <- c(11, 26, 27, 76, 78, 94, 95, 102, 103, 114, 116)
+spp.data <- spp.data[!(spp.data$SiteID %in% site.exclude), ]
+veg.data <- veg.data[!(veg.data$SiteID %in% site.exclude), ]
+
+# Merge the species data with the landcover data
+model.data <- merge.data.frame(spp.data, veg.data, by = "SiteID")
+rm(spp.data, veg.data, site.exclude)
+
+# Create basic habitat model for Bombus Mixtus
+model.data$pa <- model.data$`Bombus mixtus`
+spp.model <- glm(pa ~ Deciduous + Mixedwood + Pine + Spruce + TreedBogFen + Swamp + GrassShrub + Wetland + UrbInd + SoftLin + HardLin + Crop + Pasture + Forestry + Latitude + Longitude, 
+                 family = "binomial",
+                 data = model.data, 
+                 maxit = 250)
+
+# Determine basic model fit
+auc(model.data$pa, plogis(predict(spp.model))) # Reasonable fit
+
+# Create a simplified landcover
+veg.lookup <- read.csv("data/lookup/lookup-veg-hf-age-v2020.csv")
+unique.veg <- unique(veg.lookup$UseAvail_BEA)
+unique.veg <- unique.veg[!(unique.veg %in% "EXCLUDE")]
+
+load("data/base/landcover/veghf_w2w_2018_wide_water.RData")
+veg.cur <- as.data.frame(as.matrix(dd_2018$veg_current))
+
+# Convert to proportions
+veg.cur <- veg.cur / rowSums(veg.cur)
+
+veg.data <- data.frame(LinkID = rownames(veg.cur))
+
+for(veg in unique.veg) {
+  
+  # Identify columns of interest
+  veg.id <- veg.lookup[veg.lookup$UseAvail_BEA %in% veg, "ID"]
+  
+  # Check if row sum will fail
+  if(length(veg.id) == 1) {
+    
+    veg.combined <- data.frame(Veg = veg.cur[, veg.id])
+    
+  } else {
+    
+    veg.combined <- data.frame(Veg = rowSums(veg.cur[, colnames(veg.cur) %in% veg.id]))
+    
+  }
+  
+  colnames(veg.combined)[1] <- veg
+  
+  veg.data <- cbind.data.frame(veg.data,
+                               veg.combined)
+  
+  rm(veg.combined)
+  
+}
+
+rm(dd_2018, lts, ltv)
