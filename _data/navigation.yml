@@ -1,191 +1,188 @@
 # main links
 main:
-  - title: "About"
-    url: /about/
-  - title: "Survey Methods"
-    url: /methods/
-  - title: "Species Profiles"
-    url: /profiles/
+  - title: "2018 Survey"
+    url: /survey/
+  - title: "Andrenidae"
+    url: /andrenidae/
+  - title: "Apidae"
+    url: /apidae/
+  - title: "Colletidae"
+    url: /colletidae/
+  - title: "Halictidae"
+    url: /halictidae/
+  - title: "Megachilidae"
+    url: /megachilidae/
   - title: "Contact"
     url: /contact/
     
-# Species profiles sidebar 
-profiles:
+# Andrenidae sidebar 
+andrenidae:
+  - title: Species 
+    children:
+      - title: "Andrena prunorum"
+        url: /andrenidae/species/Andrena prunorum
+      - title: "Andrena thaspii"
+        url: /andrenidae/species/Andrena thaspii
+      
+# Apidae sidebar 
+apidae:
+  - title: Species 
+    children:
+      - title: "Anthophora bomboides"
+        url: /apidae/species/Anthophora bomboides
+      - title: "Anthophora occidentalis"
+        url: /apidae/species/Anthophora occidentalis
+      - title: "Anthophora terminalis"
+        url: /apidae/species/Anthophora terminalis
+      - title: "Apis mellifera"
+        url: /apidae/species/Apis mellifera
+      - title: "Bombus appositus"
+        url: /apidae/species/Bombus appositus
+      - title: "Bombus balteatus"
+        url: /apidae/species/Bombus balteatus
+      - title: "Bombus bifarius"
+        url: /apidae/species/Bombus bifarius
+      - title: "Bombus bohemicus"
+        url: /apidae/species/Bombus bohemicus
+      - title: "Bombus borealis"
+        url: /apidae/species/Bombus borealis
+      - title: "Bombus californicus"
+        url: /apidae/species/Bombus californicus
+      - title: "Bombus centralis"
+        url: /apidae/species/Bombus centralis
+      - title: "Bombus cryptarum"
+        url: /apidae/species/Bombus cryptarum
+      - title: "Bombus fervidus"
+        url: /apidae/species/Bombus fervidus
+      - title: "Bombus flavidus"
+        url: /apidae/species/Bombus flavidus
+      - title: "Bombus flavifrons"
+        url: /apidae/species/Bombus flavifrons
+      - title: "Bombus frigidus"
+        url: /apidae/species/Bombus frigidus
+      - title: "Bombus huntii"
+        url: /apidae/species/Bombus huntii
+      - title: "Bombus hyperboreus"
+        url: /apidae/species/Bombus hyperboreus
+      - title: "Bombus insularis"
+        url: /apidae/species/Bombus insularis
+      - title: "Bombus jonellus"
+        url: /apidae/species/Bombus jonellus
+      - title: "Bombus melanopygus"
+        url: /apidae/species/Bombus melanopygus
+      - title: "Bombus mixtus"
+        url: /apidae/species/Bombus mixtus
+      - title: "Bombus nevadensis"
+        url: /apidae/species/Bombus nevadensis
+      - title: "Bombus occidentalis"
+        url: /apidae/species/Bombus occidentalis
+      - title: "Bombus perplexus"
+        url: /apidae/species/Bombus perplexus
+      - title: "Bombus polaris"
+        url: /apidae/species/Bombus polaris
+      - title: "Bombus rufocinctus"
+        url: /apidae/species/Bombus rufocinctus
+      - title: "Bombus sandersoni"
+        url: /apidae/species/Bombus sandersoni
+      - title: "Bombus sitkensis"
+        url: /apidae/species/Bombus sitkensis
+      - title: "Bombus suckleyi"
+        url: /apidae/species/Bombus suckleyi
+      - title: "Bombus sylvicola"
+        url: /apidae/species/Bombus sylvicola
+      - title: "Bombus ternarius"
+        url: /apidae/species/Bombus ternarius
+      - title: "Bombus terricola"
+        url: /apidae/species/Bombus terricola
+      - title: "Bombus vagans"
+        url: /apidae/species/Bombus vagans
+      - title: "Diadasia australis"
+        url: /apidae/species/Diadasia australis
+      - title: "Diadasia diminuta"
+        url: /apidae/species/Diadasia diminuta
+      - title: "Melissodes agilis"
+        url: /apidae/species/Melissodes agilis
+
+# Colletidae sidebar 
+colletidae:
+  - title: Species 
+    children:
+      - title: "Colletes brevicornis"
+        url: /colletidae/species/Colletes brevicornis
+      - title: "Hylaeus annulatus"
+        url: /colletidae/species/Hylaeus annulatus
+      - title: "Hylaeus modestus"
+        url: /colletidae/species/Hylaeus modestus
+
+# Halictidae sidebar 
+halictidae:
   - title: Species 
     children:
       - title: "Agapostemon femoratus"
-        url: /profiles/species/Agapostemon femoratus
+        url: /halictidae/species/Agapostemon femoratus
       - title: "Agapostemon obliquus"
-        url: /profiles/species/Agapostemon obliquus
+        url: /halictidae/species/Agapostemon obliquus
       - title: "Agapostemon texanus"
-        url: /profiles/species/Agapostemon texanus
+        url: /halictidae/species/Agapostemon texanus
       - title: "Agapostemon virescens"
-        url: /profiles/species/Agapostemon virescens
-      - title: "Andrena prunorum"
-        url: /profiles/species/Andrena prunorum
-      - title: "Andrena thaspii"
-        url: /profiles/species/Andrena thaspii
-      - title: "Anthidium clypeodentatum"
-        url: /profiles/species/Anthidium clypeodentatum
-      - title: "Anthidium tenuiflorae"
-        url: /profiles/species/Anthidium tenuiflorae
-      - title: "Anthophora bomboides"
-        url: /profiles/species/Anthophora bomboides
-      - title: "Anthophora occidentalis"
-        url: /profiles/species/Anthophora occidentalis
-      - title: "Anthophora spp."
-        url: /profiles/species/Anthophora spp.
-      - title: "Anthophora terminalis"
-        url: /profiles/species/Anthophora terminalis
-      - title: "Apis mellifera"
-        url: /profiles/species/Apis mellifera
-      - title: "Bombus appositus"
-        url: /profiles/species/Bombus appositus
-      - title: "Bombus balteatus"
-        url: /profiles/species/Bombus balteatus
-      - title: "Bombus bifarius"
-        url: /profiles/species/Bombus bifarius
-      - title: "Bombus bohemicus"
-        url: /profiles/species/Bombus bohemicus
-      - title: "Bombus borealis"
-        url: /profiles/species/Bombus borealis
-      - title: "Bombus californicus"
-        url: /profiles/species/Bombus californicus
-      - title: "Bombus centralis"
-        url: /profiles/species/Bombus centralis
-      - title: "Bombus cryptarum"
-        url: /profiles/species/Bombus cryptarum
-      - title: "Bombus fervidus"
-        url: /profiles/species/Bombus fervidus
-      - title: "Bombus flavidus"
-        url: /profiles/species/Bombus flavidus
-      - title: "Bombus flavifrons"
-        url: /profiles/species/Bombus flavifrons
-      - title: "Bombus frigidus"
-        url: /profiles/species/Bombus frigidus
-      - title: "Bombus huntii"
-        url: /profiles/species/Bombus huntii
-      - title: "Bombus hyperboreus"
-        url: /profiles/species/Bombus hyperboreus
-      - title: "Bombus insularis"
-        url: /profiles/species/Bombus insularis
-      - title: "Bombus jonellus"
-        url: /profiles/species/Bombus jonellus
-      - title: "Bombus melanopygus"
-        url: /profiles/species/Bombus melanopygus
-      - title: "Bombus melanopygus"
-        url: /profiles/species/Bombus melanopygus
-      - title: "Bombus mixtus"
-        url: /profiles/species/Bombus mixtus
-      - title: "Bombus nevadensis"
-        url: /profiles/species/Bombus nevadensis
-      - title: "Bombus occidentalis"
-        url: /profiles/species/Bombus occidentalis
-      - title: "Bombus perplexus"
-        url: /profiles/species/Bombus perplexus
-      - title: "Bombus polaris"
-        url: /profiles/species/Bombus polaris
-      - title: "Bombus rufocinctus"
-        url: /profiles/species/Bombus rufocinctus
-      - title: "Bombus sandersoni"
-        url: /profiles/species/Bombus sandersoni
-      - title: "Bombus sitkensis"
-        url: /profiles/species/Bombus sitkensis
-      - title: "Bombus suckleyi"
-        url: /profiles/species/Bombus suckleyi
-      - title: "Bombus sylvicola"
-        url: /profiles/species/Bombus sylvicola
-      - title: "Bombus ternarius"
-        url: /profiles/species/Bombus ternarius
-      - title: "Bombus terricola"
-        url: /profiles/species/Bombus terricola
-      - title: "Bombus unknown"
-        url: /profiles/species/Bombus unknown
-      - title: "Bombus vagans"
-        url: /profiles/species/Bombus vagans
-      - title: "Braconid wasp"
-        url: /profiles/species/Braconid wasp
-      - title: "Chrysis cembricola"
-        url: /profiles/species/Chrysis cembricola
-      - title: "Colletes brevicornis"
-        url: /profiles/species/Colletes brevicornis
-      - title: "Crabronid wasp"
-        url: /profiles/species/Crabronid wasp
-      - title: "Diadasia australis"
-        url: /profiles/species/Diadasia australis
-      - title: "Diadasia diminuta"
-        url: /profiles/species/Diadasia diminuta
-      - title: "Dianthidium curvatum"
-        url: /profiles/species/Dianthidium curvatum
-      - title: "Dianthidium pudicum"
-        url: /profiles/species/Dianthidium pudicum
+        url: /halictidae/species/Agapostemon virescens
       - title: "Dufourea dilatipes"
-        url: /profiles/species/Dufourea dilatipes
+        url: /halictidae/species/Dufourea dilatipes
       - title: "Dufourea maura"
-        url: /profiles/species/Dufourea maura
+        url: /halictidae/species/Dufourea maura
       - title: "Halictus farinosus"
-        url: /profiles/species/Halictus farinosus
+        url: /halictidae/species/Halictus farinosus
       - title: "Halictus rubicundus"
-        url: /profiles/species/Halictus rubicundus
-      - title: "Hoplitis albifrons"
-        url: /profiles/species/Hoplitis albifrons
-      - title: "Hoplitis fulgida"
-        url: /profiles/species/Hoplitis fulgida
-      - title: "Hylaeus annulatus"
-        url: /profiles/species/Hylaeus annulatus
-      - title: "Hylaeus modestus"
-        url: /profiles/species/Hylaeus modestus
+        url: /halictidae/species/Halictus rubicundus
       - title: "Lasioglossum athabascense"
-        url: /profiles/species/Lasioglossum athabascense
+        url: /halictidae/species/Lasioglossum athabascense
       - title: "Lasioglossum leucozonium"
-        url: /profiles/species/Lasioglossum leucozonium
+        url: /halictidae/species/Lasioglossum leucozonium
       - title: "Lasioglossum pictum"
-        url: /profiles/species/Lasioglossum pictum
-      - title: "Lasioglossum spp."
-        url: /profiles/species/Lasioglossum spp.
+        url: /halictidae/species/Lasioglossum pictum
       - title: "Lasioglossum zonulum"
-        url: /profiles/species/Lasioglossum zonulum
-      - title: "Lepturobosca chrysocoma"
-        url: /profiles/species/Lepturobosca chrysocoma
+        url: /halictidae/species/Lasioglossum zonulum
+
+# Megachilidae sidebar 
+megachilidae:
+  - title: Species 
+    children:
+      - title: "Anthidium clypeodentatum"
+        url: /megachilidae/species/Anthidium clypeodentatum
+      - title: "Anthidium tenuiflorae"
+        url: /megachilidae/species/Anthidium tenuiflorae
+      - title: "Dianthidium curvatum"
+        url: /megachilidae/species/Dianthidium curvatum
+      - title: "Dianthidium pudicum"
+        url: /megachilidae/species/Dianthidium pudicum
+      - title: "Hoplitis albifrons"
+        url: /megachilidae/species/Hoplitis albifrons
+      - title: "Hoplitis fulgida"
+        url: /megachilidae/species/Hoplitis fulgida
       - title: "Megachile centuncularis"
-        url: /profiles/species/Megachile centuncularis
+        url: /megachilidae/species/Megachile centuncularis
       - title: "Megachile circumcincta"
-        url: /profiles/species/Megachile circumcincta
+        url: /megachilidae/species/Megachile circumcincta
       - title: "Megachile frigida"
-        url: /profiles/species/Megachile frigida
+        url: /megachilidae/species/Megachile frigida
       - title: "Megachile inermis"
-        url: /profiles/species/Megachile inermis
+        url: /megachilidae/species/Megachile inermis
       - title: "Megachile lapponica"
-        url: /profiles/species/Megachile lapponica
+        url: /megachilidae/species/Megachile lapponica
       - title: "Megachile latimanus"
-        url: /profiles/species/Megachile latimanus
+        url: /megachilidae/species/Megachile latimanus
       - title: "Megachile melanophaea"
-        url: /profiles/species/Megachile melanophaea
+        url: /megachilidae/species/Megachile melanophaea
       - title: "Megachile melanophea"
-        url: /profiles/species/Megachile melanophea
+        url: /megachilidae/species/Megachile melanophea
       - title: "Megachile montivaga"
-        url: /profiles/species/Megachile montivaga
+        url: /megachilidae/species/Megachile montivaga
       - title: "Megachile perihirta"
-        url: /profiles/species/Megachile perihirta
+        url: /megachilidae/species/Megachile perihirta
       - title: "Megachile pugnata"
-        url: /profiles/species/Megachile pugnata
+        url: /megachilidae/species/Megachile pugnata
       - title: "Megachile relativa"
-        url: /profiles/species/Megachile relativa
+        url: /megachilidae/species/Megachile relativa
       - title: "Megachile rotundata"
-        url: /profiles/species/Megachile rotundata
-      - title: "Melissodes agilis"
-        url: /profiles/species/Melissodes agilis
-      - title: "Osmia bucephala"
-        url: /profiles/species/Osmia bucephala
-      - title: "Pseudopanurgus aestivalis"
-        url: /profiles/species/Pseudopanurgus aestivalis
-      - title: "Psithyrus spp."
-        url: /profiles/species/Psithyrus spp.
-      - title: "Solitary bee"
-        url: /profiles/species/Solitary bee
-      - title: "Sphecodes dichrous"
-        url: /profiles/species/Sphecodes dichrous
-      - title: "Trichiotinus assimilis"
-        url: /profiles/species/Trichiotinus assimilis
-      - title: "Vespid wasp"
-        url: /profiles/species/Vespid wasp
+        url: /megachilidae/species/Megachile rotundata
+
