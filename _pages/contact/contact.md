@@ -3,10 +3,19 @@ title: "Contact"
 layout: single
 permalink: /contact/
 author_profile: false
-sidebar:
-  nav: "contact"
+classes: wide
 ---
 
-For any questions about the Alberta Native Bee Council, please contact info@albertanativebeecouncil.ca.
+# Alberta Native Bee Council
+info@albertanativebeecouncil.ca
 
-For questions related to the data summaries presented on this page, please contact Brandon Allen (brandon.allen@ualberta.ca).
+(403) 836-3015
+
+PO Box 608
+
+Blairmore, AB, T0K0E0
+
+# Alberta Biodiversity Monitoring Institute
+Brandon Allen
+
+brandon.allen@ualberta.ca

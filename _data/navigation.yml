@@ -1,7 +1,7 @@
 # main links
 main:
   - title: "2018 Survey"
-    url: /survey/
+    url: /survey/about
   - title: "Andrenidae"
     url: /andrenidae/
   - title: "Apidae"
@@ -15,6 +15,19 @@ main:
   - title: "Contact"
     url: /contact/
     
+# Survey sidebar 
+survey:
+  - title: Sections 
+    children:
+      - title: "About"
+        url: /survey/about   
+      - title: "Protocol"
+        url: /survey/protocol
+      - title: "Survey Sites"
+        url: /survey/surveysites
+      - title: "Results"
+        url: /survey/results
+        
 # Andrenidae sidebar 
 andrenidae:
   - title: Species 
