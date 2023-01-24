@@ -160,12 +160,11 @@ for (species in colnames(spp.data)[-c(1:4)]) {
           panel.border = element_rect(colour = "black", fill=NA, size=1),
           legend.position = c(0.25, 0.15))
 
-ggsave(filename = paste0("results/figures/species/", species, "/range-map.jpeg"),
+ggsave(filename = paste0("results/figures/species/", species, "/range-map.png"),
        plot = occ.plot,
        height = 1200,
        width = 800,
        dpi = 72,
-       quality = 100,
        units = "px")
   
 }
@@ -184,9 +183,9 @@ occ.plot <- ggplot() +
   new_scale_fill() +
   geom_sf(data = data.projected, aes(colour = Detections, fill = Detections, shape = Detections, size = 1)) +
   scale_size(guide = "none") +
-  scale_shape_manual(values = c(22, 21)) +
-  scale_color_manual(values = c("#122451", "#122451")) +
-  scale_fill_manual(values = alpha(c("#122451", "#122451"), c(0.9, 0))) +
+  scale_shape_manual(values = c(22,21)) +
+  scale_color_manual(values = c("#859b6c", "#004f63")) +
+  scale_fill_manual(values = alpha(c("#859b6c", "#004f63"), c(0.9, 0.9))) +
   theme_light() +
   guides(color = guide_legend(override.aes = list(size = 10))) +
   theme(axis.title = element_text(size=24),
@@ -199,12 +198,11 @@ occ.plot <- ggplot() +
         panel.border = element_rect(colour = "black", fill=NA, size=1),
         legend.position = c(0.25, 0.15))
 
-ggsave(filename = paste0("results/figures/survey-locations.jpeg"),
+ggsave(filename = paste0("results/figures/survey-locations.png"),
        plot = occ.plot,
        height = 1200,
        width = 800,
        dpi = 72,
-       quality = 100,
        units = "px")
 
 rm(list=ls())
