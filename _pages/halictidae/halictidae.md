@@ -14,6 +14,8 @@ Some of the prettiest bees in Alberta belong to the Halictidae family. Many are 
 
 Most halictids nest in the ground, some are completely solitary but others share the entrance to their nests. They lay their eggs in cells lined with waterproof material produced in the Dufour’s gland, and provision their young with a mixture of pollen and nectar. 
 
+In our 2018 survey, we detected twelve species in this family. These species were moderately common in our survey data and were detected at 34 of 72 survey locations.
+
 <h2>Agapostemon</h2>
 
 Agaposteman are medium-sized (9 – 11 mm), brilliant green or blue-green bees, with yellow- and black-banded abdomens in the males. 

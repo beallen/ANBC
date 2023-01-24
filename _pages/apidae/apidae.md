@@ -12,6 +12,8 @@ sidebar:
 
 Members of the Apidae family are highly variable, but they tend to be large, hairy, fast-flying and have long tongues. Many of the females have dense scopal hairs that make the bee look like it’s wearing chaps or a polished area on their hind legs called a corbiculae where they pack pollen mixed with nectar in a basket formed by a rim of hairs.
 
+In our 2018 survey, this was the most common family identified. There were 37 unique species identified which were detected at 69 out of 72 survey locations. In addition, we incorporated 43 surveys from Alberta Environment and Protected Areas that were conducted in 2018. Apidae was detected at all of these locations.
+
 <h2>Anthophora (Digger bees)</h2>
 
 ﻿Anthophora are medium to large (up to 3 cm long), robust and hairy bees that resemble bumble bees. They have scopal hairs on hind legs which they use to they carry dry pollen, unlike bumble bees which create moist masses of pollen which they pack into pollen baskets. Many have extremely long tongues.

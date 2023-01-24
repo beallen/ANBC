@@ -12,6 +12,8 @@ sidebar:
 
 Bees in the Megachilidae family build their nest cells from soil (mason bees) or leaves (leaf cutter bees). A few collect plant or animal hairs and fibres to construct nest cells and are called carder bees. Most species nest in holes in wood or hollow twigs, but there are also a few that nest in the ground. Members of this family (except the cuckoo bees) are recognizable because they carry pollen on their hairy underbelly.
 
+In our 2018 survey, we detected eighteen species in this family. These species were moderately common in our survey data and were detected at 26 of 72 survey locations.
+
 <h2>Anthidium (carder bee)</h2>
 
 Anthidium are moderate to large, black and yellow bees with scopa located on the underside of their abdomens.  

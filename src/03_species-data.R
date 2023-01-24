@@ -1,7 +1,7 @@
 #
 # Title: Cleaning of species data and creation of range maps
 # Created: August 30th, 2022
-# Last Updated: October 18th, 2022
+# Last Updated: January 23rd, 2022
 # Author: Brandon Allen
 # Objectives: Clean and create basic summaries for the species data
 # Keywords: Notes, Species data, Range maps, Use availability, Species Models
@@ -67,11 +67,27 @@ spp.data$SiteID <- rownames(spp.data)
 # Merge with site lookup and create a projection
 spp.data <- merge.data.frame(site.lookup, spp.data, by = "SiteID")
 
+# Correct typo for Megachili melanophaea (correct) and Megachili melanophea
+spp.data$`Megachile melanophaea` <- spp.data$`Megachile melanophaea` + spp.data$`Megachile melanophea`
+
 # Save the results
 save(spp.data, file = "data/processed/species/species-abundance.Rdata")
 
+# Family summaries
+spp.data$andrenida <- ifelse(rowSums(spp.data[, c(9:10)]) > 0, 1, 0)
+spp.data$apidae <- ifelse(rowSums(spp.data[, c(13:46, 49, 50, 79)]) > 0, 1, 0)
+spp.data$colletidae <- ifelse(rowSums(spp.data[, c(48, 59, 60)]) > 0, 1, 0)
+spp.data$halictidae <- ifelse(rowSums(spp.data[, c(5:8, 53:56, 61:64)]) > 0, 1, 0)
+spp.data$megachilidae <- ifelse(rowSums(spp.data[, c(11:12, 51:52, 57:58, 66:72, 74:78)]) > 0, 1, 0)
+
+table(spp.data$andrenida, spp.data$Project)
+table(spp.data$apidae, spp.data$Project)
+table(spp.data$colletidae, spp.data$Project)
+table(spp.data$halictidae, spp.data$Project)
+table(spp.data$megachilidae, spp.data$Project)
+
 ##############
-# Range Maps #
+# Range Maps # NOTE: I think the AEP data only identified bumblebees. Will need to remove AEP sites for other groups
 ##############~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Clear memory
@@ -93,6 +109,9 @@ spp.lookup <- read.csv("data/lookup/species-lookup.csv")
 # Standardize to presence/absence
 spp.data[, -c(1:4)][spp.data[, -c(1:4)] > 1] <- 1
 
+# Load the mapping data
+load("data/base/mapping/provincial-boundary.Rdata")
+
 # Loop through each unique species
 for (species in colnames(spp.data)[-c(1:4)]) {
   
@@ -109,55 +128,84 @@ for (species in colnames(spp.data)[-c(1:4)]) {
     spp.temp <- spp.data[spp.data$SiteID %in% site.lookup[site.lookup$Project == "ANBC", "SiteID"], ]
     
   }
+  
   # Create the spatial projection
   data.projected <- st_as_sf(x = spp.temp, 
                              coords = c("Longitude", "Latitude"),
                              crs = "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
 
   # Modify the data frame to map only single species
-  data.projected$Detections <- ifelse(as.numeric(as.data.frame(data.projected[, species])[,1]) == 1, "Present", "Absent")
-  
-  png(filename = paste0("results/figures/species/", species, "/range-map.png"),
-      height = 2400,
-      width = 1600, 
-      res = 300)
-  
-  print(ggplot() + 
-          geom_sf(data = boundary.in, mapping = aes(colour = "#000000", fill = c(alpha(c("#c969a1"), c(0.2)),
-                                                                                 alpha(c("#ee8577"), c(0.2)),
-                                                                                 alpha(c("#ffbb44"), c(0.2)),
-                                                                                 alpha(c("#859b6c"), c(0.2)),
-                                                                                 alpha(c("#62929a"), c(0.2)),
-                                                                                 alpha(c("#004f63"), c(0.2)))), show.legend = FALSE) +
-          scale_color_manual(values = c("#000000")) +
-          scale_fill_manual(values = c(alpha(c("#c969a1"), c(0.2)),
-                                       alpha(c("#ee8577"), c(0.2)),
-                                       alpha(c("#ffbb44"), c(0.2)),
-                                       alpha(c("#859b6c"), c(0.2)),
-                                       alpha(c("#62929a"), c(0.2)),
-                                       alpha(c("#004f63"), c(0.2)))) +
-          new_scale_color() +
-          new_scale_fill() +
-          geom_sf(data = data.projected, aes(colour = Detections, fill = Detections, shape = Detections)) +
-          scale_shape_manual(values = c(21,21)) +
-          scale_color_manual(values = c("#000000", "#000000")) +
-          scale_fill_manual(values = alpha(c("#72bcd5", "#ef8a47"), c(1, 1))) +
-          ggtitle(species) + 
-          theme_light() +
-          theme(axis.title = element_text(size=16),
-                axis.text.x = element_text(size=16),
-                axis.text.y = element_text(size=16),
-                title = element_text(size=16),
-                legend.text = element_text(size=14),
-                legend.title = element_blank(),
-                legend.background = element_rect(fill='transparent'),
-                axis.line = element_line(colour = "black"),
-                panel.border = element_rect(colour = "black", fill=NA, size=1),
-                legend.position = c(0.25, 0.17)))
-  
-  dev.off()
+  data.projected$Detections <- ifelse(as.numeric(as.data.frame(data.projected[, species])[,1]) == 1, "Detected", "Undetected")
+
+  occ.plot <- ggplot() + 
+    geom_sf(data = province.shapefile, aes(color = NRNAME, fill = NRNAME), show.legend = FALSE) +
+    scale_fill_manual(values =  alpha(province.shapefile$Color, 0.2)) +
+    scale_color_manual(values =  alpha(province.shapefile$Color, 0.1)) +
+    new_scale_color() +
+    new_scale_fill() +
+    geom_sf(data = data.projected, aes(colour = Detections, fill = Detections, shape = Detections, size = 1)) +
+    scale_size(guide = "none") +
+    scale_shape_manual(values = c(21,4)) +
+    scale_color_manual(values = c("#122451", "#122451")) +
+    scale_fill_manual(values = alpha(c("#122451", "#122451"), c(0.9, 0))) +
+    theme_light() +
+    guides(color = guide_legend(override.aes = list(size = 10))) +
+    theme(axis.title = element_text(size=24),
+          axis.text.x = element_text(size=24),
+          axis.text.y = element_text(size=24),
+          title = element_text(size=24),
+          legend.text = element_text(size=24),
+          legend.title = element_blank(),
+          axis.line = element_line(colour = "black"),
+          panel.border = element_rect(colour = "black", fill=NA, size=1),
+          legend.position = c(0.25, 0.15))
+
+ggsave(filename = paste0("results/figures/species/", species, "/range-map.jpeg"),
+       plot = occ.plot,
+       height = 1200,
+       width = 800,
+       dpi = 72,
+       quality = 100,
+       units = "px")
   
 }
+
+# Create a map of field surveys
+data.projected <- st_as_sf(x = spp.data, 
+                           coords = c("Longitude", "Latitude"),
+                           crs = "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+data.projected$Detections <- data.projected$Project
+
+occ.plot <- ggplot() + 
+  geom_sf(data = province.shapefile, aes(color = NRNAME, fill = NRNAME), show.legend = FALSE) +
+  scale_fill_manual(values =  alpha(province.shapefile$Color, 0.2)) +
+  scale_color_manual(values =  alpha(province.shapefile$Color, 0.1)) +
+  new_scale_color() +
+  new_scale_fill() +
+  geom_sf(data = data.projected, aes(colour = Detections, fill = Detections, shape = Detections, size = 1)) +
+  scale_size(guide = "none") +
+  scale_shape_manual(values = c(22, 21)) +
+  scale_color_manual(values = c("#122451", "#122451")) +
+  scale_fill_manual(values = alpha(c("#122451", "#122451"), c(0.9, 0))) +
+  theme_light() +
+  guides(color = guide_legend(override.aes = list(size = 10))) +
+  theme(axis.title = element_text(size=24),
+        axis.text.x = element_text(size=24),
+        axis.text.y = element_text(size=24),
+        title = element_text(size=24),
+        legend.text = element_text(size=24),
+        legend.title = element_blank(),
+        axis.line = element_line(colour = "black"),
+        panel.border = element_rect(colour = "black", fill=NA, size=1),
+        legend.position = c(0.25, 0.15))
+
+ggsave(filename = paste0("results/figures/survey-locations.jpeg"),
+       plot = occ.plot,
+       height = 1200,
+       width = 800,
+       dpi = 72,
+       quality = 100,
+       units = "px")
 
 rm(list=ls())
 gc()

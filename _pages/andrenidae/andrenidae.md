@@ -10,7 +10,9 @@ sidebar:
 
 <h2>Mining Bees</h2>
 
-The andrenid bees (commonly known as mining bees) is a very large family of solitary, ground-nesting bees. Many are dark, black, and rather non-descript bees; others have bright red colors. Typically small to moderate-sized bees, they are somewhat dorsoventrally flattened and have an oval rather than parallel-sided abdomen. They have scopae on their legs and are commonly oligolectic. Andrenids are among the earliest bees to emerge in the spring, frequently seen visiting Salix (willows). Many of them are active only during this brief period, remaining underground through summer, fall and winter. In our 2018 survey,  we detected two species in the Andrenidae family.
+The andrenid bees (commonly known as mining bees) is a very large family of solitary, ground-nesting bees. Many are dark, black, and rather non-descript bees; others have bright red colors. Typically small to moderate-sized bees, they are somewhat dorsoventrally flattened and have an oval rather than parallel-sided abdomen. They have scopae on their legs and are commonly oligolectic. Andrenids are among the earliest bees to emerge in the spring, frequently seen visiting Salix (willows). Many of them are active only during this brief period, remaining underground through summer, fall and winter. 
+
+In our 2018 survey, we detected two species in the Andrenidae family. These species were rare in our survey data and were detected at only 2 of 72 survey locations.
 
 <h2>Andrena</h2>
 

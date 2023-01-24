@@ -12,6 +12,8 @@ sidebar:
 
 Colletid bees are often referred to as plasterer or cellophane bees because they apply a lining to their nests to protect their young from soil moisture and fungi.  Unlike other bees, they have short, forked tongues which they use to apply a transparent, cellophane-like material to their brood cells.   Many are solitary ground nesters, sometimes forming large aggregations. Others nest in cavities such as hollow twigs. Many colletid bees do not have pollen-carrying hairs because they carry pollen in their internal crops.
 
+In our 2018 survey, we detected three species in this family. These species were rare in our survey data and were detected at only 3 of 72 survey locations.
+
 <h2>Colletes</h2>
 
 Colletes are medium-sized, hairy bees with angled eyes so their face looks heart-shaped. They are black with well-defined abdominal hair bands.
