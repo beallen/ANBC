@@ -15,4 +15,4 @@ This repository contains all code related to the analysis of the species data an
 
 ## Acknowledgements
 
-We would like to acknowledge that this work would not be possible without all of the volunteers who helped organize, collect, identify, and analyze the samples collected as part of the 2018 survey. In addition, we would like to acknowledge the University of Calgary Digital Collections for providing images of Alberta's native bees. 
+We would like to acknowledge that this work would not be possible without all of the volunteers who helped organize, collect, identify, and analyze the samples collected as part of the 2018 survey. In addition, we would like to acknowledge the University of Calgary Digital Collections for providing images of Alberta's native bees and Alberta Environment and Protected Areas for providing their field surveys also conducted in 2018. 
