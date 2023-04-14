@@ -2,9 +2,9 @@
 
 ## Overview 
 
-The Alberta Native Bee Council (ANBC) has implemented a province-wide sampling program for wild bees. This program samples native bees in 2018 using passive sampling techniques that can help inform the status and distribution of this group. Depending on the quality/quantity of the species data, we plan to address the following objectives:
+The Alberta Native Bee Council (ANBC) has implemented a province-wide sampling program for wild bees. This sampling program used passive sampling techniques to collect information that can describe the distribution of native bees in Alberta. In addition, we have integrated publicly available native bee surveys to improve our understanding on bee distributions. Depending on the availability of the species data, we plan to address the following objectives:
 
-- Create range maps for all species.
+- Create distribution and range maps species.
 - Describe the relative abundance of each species.
 - Assess the landscape-level impacts on native bee populations using species distribution models and/or use availability models.
 - Identify how communities of bee species are distributed across the province.
@@ -15,4 +15,4 @@ This repository contains all code related to the analysis of the species data an
 
 ## Acknowledgements
 
-We would like to acknowledge that this work would not be possible without all of the volunteers who helped organize, collect, identify, and analyze the samples collected as part of the 2018 survey. In addition, we would like to acknowledge the University of Calgary Digital Collections for providing images of Alberta's native bees and Alberta Environment and Protected Areas for providing their field surveys also conducted in 2018. 
+We would like to acknowledge that this work would not be possible without all of the volunteers who helped organize, collect, identify, and analyze the samples collected as part of the 2018 survey. In addition, we would like to acknowledge Alberta Environment and Protected Areas, Alberta Conservation Association, the Strickland Entomological Museum, and iNaturalist for making their native bee surveys publicly available.
