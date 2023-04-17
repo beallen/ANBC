@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "2018 Survey"
+  - title: "Data Sources"
     url: /survey/about
   - title: "Andrenidae"
     url: /andrenidae/
@@ -20,13 +20,10 @@ survey:
   - title: Sections 
     children:
       - title: "About"
-        url: /survey/about   
-      - title: "Protocol"
-        url: /survey/protocol
+        url: /survey/about
       - title: "Survey Sites"
         url: /survey/surveysites
-      - title: "Results"
-        url: /survey/results
+
         
 # Andrenidae sidebar 
 andrenidae:
