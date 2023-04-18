@@ -82,6 +82,8 @@ unique.veg <- unique.veg[!(unique.veg %in% "EXCLUDE")]
 
 # Load landcover
 load("data/base/landcover/veghf_w2w_2018_wide_water.RData")
+
+# Current
 veg.cur <- as.data.frame(as.matrix(dd_2018$veg_current))
 
 # Convert to proportions
@@ -114,6 +116,44 @@ for(veg in unique.veg) {
   
 }
 
+veg.cur <- veg.data
+
+# Reference
+veg.ref <- as.data.frame(as.matrix(dd_2018$veg_reference))
+
+# Convert to proportions
+veg.ref <- veg.ref / rowSums(veg.ref)
+
+veg.data <- data.frame(LinkID = rownames(veg.ref))
+
+# Native only
+for(veg in unique.veg[1:5]) {
+  
+  # Identify columns of interest
+  veg.id <- veg.lookup[veg.lookup$UseAvail_BEA %in% veg, "ID"]
+  
+  # Check if row sum will fail
+  if(length(veg.id) == 1) {
+    
+    veg.combined <- data.frame(Veg = veg.ref[, veg.id])
+    
+  } else {
+    
+    veg.combined <- data.frame(Veg = rowSums(veg.ref[, colnames(veg.ref) %in% veg.id]))
+    
+  }
+  
+  colnames(veg.combined)[1] <- veg
+  
+  veg.data <- cbind.data.frame(veg.data,
+                               veg.combined)
+  
+  rm(veg.combined)
+  
+}
+
+veg.ref <- veg.data
+
 rm(dd_2018, lts, ltv)
 
 # Load spatial data
@@ -127,11 +167,11 @@ kgrid <- data.frame(LinkID = kgrid$Row_Col,
                     MAT = kgrid$MAT,
                     FFP = kgrid$FFP)
 
-# Remove grassland
-kgrid <- merge.data.frame(kgrid, veg.data, by = "LinkID")
-kgrid.pred <- kgrid
+# Merge with kgrid
+kgrid.cur <- merge.data.frame(kgrid, veg.cur, by = "LinkID")
+kgrid.ref <- merge.data.frame(kgrid, veg.ref, by = "LinkID")
 
-save(kgrid.pred, file = "data/processed/landcover/kgrid-processed.Rdata")
+save(kgrid.cur, kgrid.ref, file = "data/processed/landcover/kgrid-processed.Rdata")
 
 rm(list=ls())
 gc()
