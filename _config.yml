@@ -66,12 +66,20 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/beallen/ANBC"
+    - label: "ANBC"
+      url: "https://www.albertanativebeecouncil.ca/"
+    - label: "ABMI"
+      url: "https://abmi.ca/"
 
 footer:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/beallen/ANBC"
+    - label: "ANBC"
+      url: "https://www.albertanativebeecouncil.ca/"
+    - label: "ABMI"
+      url: "https://abmi.ca/"
 
 defaults:
   # _posts
