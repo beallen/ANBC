@@ -1,14 +1,14 @@
 #
 # Title: Cleaning of species data and creation of range maps
 # Created: March 21st, 2023
-# Last Updated: March 21st, 2023
+# Last Updated: April 18th, 2023
 # Author: Brandon Allen
 # Objectives: Clean and create the basic summaries for the set of species we are reporting on
 # Keywords: Notes, Species data, Range maps
 #
 
 #########
-# Notes # ANBC
+# Notes # 
 #########~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #
 # 1) The ANBC sites were surveyed in 2018
@@ -89,7 +89,7 @@ aca.data <- merge.data.frame(aca.data, site.lookup[site.lookup$Project == "ACA",
 #################### Just filter and use the coordinates stored in the raw data. 
 
 # Load data
-iNaturalist.data <- read.csv("data/base/species/iNaturalist_monitoringdata.csv")
+iNaturalist.data <- read.csv("data/base/species/iNaturalist_observationdata.csv")
 
 # Filter entries to the species of interest
 iNaturalist.data <- iNaturalist.data[iNaturalist.data$stateProvince == "Alberta", ]
