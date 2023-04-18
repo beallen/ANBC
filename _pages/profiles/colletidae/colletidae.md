@@ -1,7 +1,7 @@
 ---
 title: "<center> Colletidae (Plasterer Bees) </center>"
 layout: single
-permalink: /colletidae/
+permalink: /profile/colletidae/
 author_profile: false
 classes: wide
 sidebar:

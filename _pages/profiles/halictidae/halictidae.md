@@ -1,7 +1,7 @@
 ---
 title: "<center> Halictidae (Sweat Bees) </center>"
 layout: single
-permalink: /halictidae/
+permalink: /profile/halictidae/
 author_profile: false
 classes: wide
 sidebar:

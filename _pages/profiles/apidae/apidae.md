@@ -1,7 +1,7 @@
 ---
 title: "<center> Apidae </center>"
 layout: single
-permalink: /apidae/
+permalink: /profile/apidae/
 author_profile: false
 classes: wide
 sidebar:

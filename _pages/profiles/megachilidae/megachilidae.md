@@ -1,7 +1,7 @@
 ---
 title: "<center> Megachilidae (Mason and Leaf Cutter Bees) </center>"
 layout: single
-permalink: /megachilidae/
+permalink: /profile/megachilidae/
 author_profile: false
 classes: wide
 sidebar:

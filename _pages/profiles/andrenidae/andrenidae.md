@@ -1,12 +1,28 @@
 ---
 title: "<center> Andrenidae (Mining Bees) </center>"
 layout: single
-permalink: /andrenidae/
+permalink: /profile/andrenidae/
 author_profile: false
 classes: wide
 sidebar:
   nav: "andrenidae"
 ---
+
+<style>
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+</style>
 
 <center> <h2>Introduction</h2> </center>
 
@@ -14,7 +30,18 @@ sidebar:
 
 &nbsp;
 
-<center>  In our 2018 survey, we detected two species (genus <b>Adrena</b>) in the Andrenidae family. These species were rare in our survey data and were detected at only 2 of 72 survey locations. </center>
+<center>  In our 2018 survey, we detected two species (genus <b>Adrena</b>) in the Andrenidae family. Both Andrena prunorum (left) and Andrena thaspii (right) were rare in our survey data and were each detected at a single site. We did observe more occurrence of Andrena thaspii in the ACA (two) and iNaturalist datasets (three). However, this is still too few samples to assess their habitat associations.
+
+<br>
+
+<div class="row">
+  <div class="column">
+    <img src="/ANBC/assets/figures/species/Andrena prunorum/range-map.png" alt="Snow" style="width:100%" class="center">
+  </div>
+  <div class="column">
+    <img src="/ANBC/assets/figures/species/Andrena thaspii/range-map.png" alt="Forest" style="width:100%" class="center">
+  </div>
+</div>
 
 <center>  <h2>Andrena</h2> </center>
 
@@ -27,3 +54,7 @@ sidebar:
 &nbsp;
 
 <center> Species in this genus are solitary bees, but may nest in aggregations. After mating, females seek sites for their nest burrows where they construct small cells. They provision the cells with a ball of pollen mixed with nectar, where they lay an egg then seal the cell. <b>Adrena</b> usually prefer sandy soils for a nesting substrate, near or under shrubs.   </center>
+
+
+
+

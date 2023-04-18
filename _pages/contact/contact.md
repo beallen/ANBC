@@ -1,9 +1,11 @@
 ---
-title: "Contact"
-layout: single
+title: " "
+layout: splash
 permalink: /contact/
 author_profile: false
 classes: wide
+header:
+  overlay_image: /assets/images/landing-page.png
 ---
 
 <center>  <h1>Questions</h1>  </center>
