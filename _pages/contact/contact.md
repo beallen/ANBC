@@ -31,7 +31,7 @@ header:
 <br>
 <br>
 
-<img src= "/ANBC/assets/images/contact/profile-photo.jpg" align="left">
+<img src= "/ANBC/assets/images/contact/profile-photo.png" align="left">
 
 <br>
 <br>
