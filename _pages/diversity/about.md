@@ -5,7 +5,7 @@ permalink: /diversity/about
 author_profile: false
 classes: wide
 header:
-  overlay_image: /assets/images/landing-page.png
+  image: /assets/images/functional-diversity/header.png
 ---
 
 <style>

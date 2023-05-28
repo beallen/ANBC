@@ -5,7 +5,7 @@ permalink: /richness/about
 author_profile: false
 classes: wide
 header:
-  overlay_image: /assets/images/landing-page.png
+  image: /assets/images/species-richness/header.png
 ---
 
 <style>

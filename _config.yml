@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Alberta Native Bee Council
+title: Alberta Bee Atlas
 email: brandon.allen@ualberta.ca
 description: >- # this means to ignore newlines until "baseurl:"
   The website used for reporting the results from the ANBC 2018 monitoring program.
@@ -66,9 +66,9 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/beallen/ANBC"
-    - label: "ANBC"
+    - label: "Alberta Native Bee Council"
       url: "https://www.albertanativebeecouncil.ca/"
-    - label: "ABMI"
+    - label: "Alberta Biodiversity Monitoring Institute"
       url: "https://abmi.ca/"
 
 footer:
@@ -76,9 +76,9 @@ footer:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/beallen/ANBC"
-    - label: "ANBC"
+    - label: "Alberta Native Bee Council"
       url: "https://www.albertanativebeecouncil.ca/"
-    - label: "ABMI"
+    - label: "Alberta Biodiversity Monitoring Institute"
       url: "https://abmi.ca/"
 
 defaults:

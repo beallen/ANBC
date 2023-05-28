@@ -5,22 +5,46 @@ permalink: /contact/
 author_profile: false
 classes: wide
 header:
-  overlay_image: /assets/images/landing-page.png
+  image: /assets/images/contact/header.png
 ---
 
-<center>  <h1>Questions</h1>  </center>
-<center>  For any questions related to bee identification, ecology, or survey data, please contact the Alberta Native Bee Council. For questions related to the supporting analyses, please contact Brandon Allen at the Alberta Biodiversity Monitoring Institute. </center>
+<img src= "/assets/images/contact/ANBC.png"
+        align="left">
 
-&nbsp;
+<br>
+<br>
+<br>
 
-<center>  <h1>Alberta Native Bee Council</h1>  </center>
-<center>  Email: info@albertanativebeecouncil.ca </center>
-<center>  Phone: (403) 836-3015 </center>
-<center>  Website: https://www.albertanativebeecouncil.ca/ </center>
+<ul style="list-style-type: none">
+   <li>Alberta Native Bee Council</li>
+   <li>Email: info@albertanativebeecouncil.ca</li>
+   <li>Phone: (403) 836-3015</li>
+   <li>Website: <a href="https://www.albertanativebeecouncil.ca/">https://www.albertanativebeecouncil.ca/</a></li>
+</ul>
 
-&nbsp;
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-<center>  <h1>Alberta Biodiversity Monitoring Institute</h1>  </center>
-<center>  Contact: Brandon Allen </center>
-<center>  Email: brandon.allen@ualberta.ca </center>
-<center>  Website: https://beallen.github.io/ </center>
+<img src= "/assets/images/contact/ABMI.jpg"
+        align="left">
+
+<br>
+<br>
+<br>
+
+<ul style="list-style-type: none">
+   <li>Alberta Biodiversity Monitoring Institute</li>
+   <li>Contact: Brandon Allen</li>
+   <li>Email: brandon.allen@ualberta.ca</li>
+   <li>Website: <a href="https://beallen.github.io/">https://beallen.github.io/</a></li>
+</ul>
+
+
+
