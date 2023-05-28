@@ -8,7 +8,7 @@ header:
   image: /assets/images/contact/header.png
 ---
 
-<img src= "/assets/images/contact/ANBC.png" align="left">
+<img src= "/ANBC/assets/images/contact/ANBC.png" align="left">
 
 <br>
 <br>
@@ -31,7 +31,7 @@ header:
 <br>
 <br>
 
-<img src= "/assets/images/contact/ABMI.jpg" align="left">
+<img src= "/ANBC/assets/images/contact/profile-photo.jpg" align="left">
 
 <br>
 <br>
