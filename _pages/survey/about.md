@@ -8,28 +8,49 @@ header:
   image: /assets/images/data-sources/header.png
 ---
 
-<center>  <h2>Locations</h2> </center>
+<center>  <h2>Survey Locations</h2>  </center>
 
-<center>  The Alberta Native Bee Council utilized a large volunteer base to deploy and recollected blue vane traps across Alberta. In total, we were able to survey 72 locations. In addition, we were able to incorporate four additional data sources where surveys were conducted between 2011 and 2022: </center> 
+<html>
+  <head>
+    <title>Survey Locations</title>
+  </head>
+  <style>
+  .container {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
 
-&nbsp;
+img {
+  max-width: 100%;
+  max-height:100%;
+}
 
-<center>  1) Surveys collected in 2018 by Alberta Environment and Protected Areas. </center> 
-<center>  2) Surveys collected in 2019 by the Alberta Conservation Association. </center> 
-<center>  3) Research-grade observations from iNaturalist. </center> 
-<center>  4) Observations stored in the Strickland Entomological Museum. </center> 
-
-&nbsp;
-
-<a href="/ANBC/assets/figures/landcover/survey-locations.png">
-<img src="/ANBC/assets/figures/landcover/survey-locations.png" height = "1200" width = "800" class="center">
-</a>
-
-<center> At each of these location, we summarized the surrounding native landcover and human footprint within an 800m buffer. The amount of human footprint within the buffer was calculated for the year that surveys were conducted. </center>
+.text {
+  font-size: 20px;
+  padding-left: 16px;
+}
+  </style>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="/ANBC/assets/figures/landcover/survey-locations.png">
+      </div>
+      <div class="text">
+        <ul>
+  <li>Data was compiled from the following sources: Alberta Native Bee Council, Alberta Environment and Protected Areas, Alberta Conservation Association, Strickland Entomological Museum, and Global Biodiversity Information Facility.</li>
+  <li>Opportunistic or planned field surveys were conducted between 2008-2023.</li>
+  <li>This resulted in collection of over 20,000 specimens surveyed at 1823 locations.</li>
+  <li>Survey methods and locations varied among the data sources as follows: </li>
+</ul>
+      </div>
+    </div>
+  </body>
+</html>
 
 <center>  <h3>Alberta Native Bee Council</h3>  </center>
 
-<center> The majority of surveys were conducted in upland forested habitats including Deciduous, Pine, and Spruce stands. The largest footprint types wtihin these surveys were forestry harvest areas, followed by urban industrial and soft linear (e.g., road verges) features. </center>
+<center> The majority of surveys were conducted in upland forested habitats including Deciduous, Pine, and Spruce stands. The largest footprint types wtihin these surveys were forestry harvest areas, followed by urban industrial and soft linear (e.g., road verges) features. Data will be made publicly available upon completion of processing the specimens.</center>
 
 <a href="/ANBC/assets/figures/landcover/landcover-surveys_ANBC.png">
 <img src="/ANBC/assets/figures/landcover/landcover-surveys_ANBC.png" height = "1200" width = "1600" class="center">
@@ -39,6 +60,10 @@ header:
 
 <center> Survey effort was primarily focused on agriculture features such as crops and pastures. Native habitats were surveyed less, with grass/shrub and deciduous stands being the dominant habitats. </center>
 
+&nbsp;
+
+<center> Prescott D, Wells M, Best L (2019). Survey of bumblebees in central Alberta - 2018. Alberta Environment and Parks - Species at Risk program. Occurrence dataset https://doi.org/10.5886/ntpd1n accessed via GBIF.org on 2023-02-28. </center>
+
 <a href="/ANBC/assets/figures/landcover/landcover-surveys_AEP.png">
 <img src="/ANBC/assets/figures/landcover/landcover-surveys_AEP.png" height = "1200" width = "1600" class="center">
 </a>
@@ -46,6 +71,10 @@ header:
 <center>  <h3>Alberta Conservation Association</h3>  </center>
 
 <center> Sites for this project were designed to assess differences between pastures and native habitats. The amount of survey effort reflects that with pastures making up approximately half the survey effort, with native habitats composing most the remaining amount. </center>
+
+&nbsp;
+
+<center> Peters S, Best L (2021). Survey of Native Bees in Rangelands in the Mixedwood Boreal and Central Parkland of Alberta, 2019. Version 1.2. Alberta Conservation Association. Occurrence dataset https://doi.org/10.5886/prpfic accessed via GBIF.org on 2023-02-28. </center>
 
 <a href="/ANBC/assets/figures/landcover/landcover-surveys_ACA.png">
 <img src="/ANBC/assets/figures/landcover/landcover-surveys_ACA.png" height = "1200" width = "1600" class="center">
@@ -55,6 +84,10 @@ header:
 
 <center> As iNaturalist surveys are conducted based on citizen science initiatives, we see a large bias towards urban industrial, soft linear (e.g., road verges), and hard linear (e.g., road and rails) features. </center>
 
+&nbsp;
+
+<center> iNaturalist Research-grade observations (GBIF.org (01 February 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.kk37g8) </center>
+
 <a href="/ANBC/assets/figures/landcover/landcover-surveys_iNaturalist.png">
 <img src="/ANBC/assets/figures/landcover/landcover-surveys_iNaturalist.png" height = "1200" width = "1600" class="center">
 </a>
@@ -63,25 +96,14 @@ header:
 
 <center> The samples collected the the Strickland Entomological Museum also exhibit bias towards sampling various human footprint features compared to native habitats. </center>
 
+&nbsp;
+
+<center> Strickland Entomological Museum, University of Calgary (GBIF.org (15 March 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.4cqwjs) </center>
+
 <a href="/ANBC/assets/figures/landcover/landcover-surveys_Strickland.png">
 <img src="/ANBC/assets/figures/landcover/landcover-surveys_Strickland.png" height = "1200" width = "1600" class="center">
 </a>
 
 
-<center>  <h2>Sources</h2>  </center>
-
-<center> iNaturalist Research-grade observations (GBIF.org (01 February 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.kk37g8) </center>
-
-&nbsp;
-
-<center> Prescott D, Wells M, Best L (2019). Survey of bumblebees in central Alberta - 2018. Alberta Environment and Parks - Species at Risk program. Occurrence dataset https://doi.org/10.5886/ntpd1n accessed via GBIF.org on 2023-02-28. </center>
-
-&nbsp;
-
-<center> Peters S, Best L (2021). Survey of Native Bees in Rangelands in the Mixedwood Boreal and Central Parkland of Alberta, 2019. Version 1.2. Alberta Conservation Association. Occurrence dataset https://doi.org/10.5886/prpfic accessed via GBIF.org on 2023-02-28. </center>
-
-&nbsp;
-
-<center> Strickland Entomological Museum, University of Calgary (GBIF.org (15 March 2023) GBIF Occurrence Download https://doi.org/10.15468/dl.4cqwjs) </center>
 
 

@@ -8,40 +8,79 @@ header:
   image: /assets/images/contact/header.png
 ---
 
-<img src= "/ANBC/assets/images/contact/ANBC.png" align="left">
+<html>
+  <head>
+    <title>ANBC</title>
+  </head>
+  <style>
+  .container {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
 
-<br>
-<br>
-<br>
+img {
+  max-width: 100%;
+  max-height:100%;
+}
 
+.text {
+  font-size: 20px;
+  padding-left: 20px;
+}
+  </style>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="/assets/images/contact/ANBC.png">
+      </div>
+      <div class="text">
 <ul style="list-style-type: none">
-   <li>Alberta Native Bee Council</li>
+   <li><a href="https://www.albertanativebeecouncil.ca/">Alberta Native Bee Council</a></li>
    <li>Email: info@albertanativebeecouncil.ca</li>
    <li>Phone: (403) 836-3015</li>
-   <li>Website: <a href="https://www.albertanativebeecouncil.ca/">https://www.albertanativebeecouncil.ca/</a></li>
 </ul>
+      </div>
+    </div>
+  </body>
+</html>
 
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-<img src= "/ANBC/assets/images/contact/profile-photo.png" align="left">
+<html>
+  <head>
+    <title>ABMI</title>
+  </head>
+  <style>
+  .container {
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
 
-<br>
-<br>
-<br>
+img {
+  max-width: 100%;
+  max-height:100%;
+}
 
+.text {
+  font-size: 20px;
+  padding-left: 10px;
+}
+  </style>
+  <body>
+    <div class="container">
+      <div class="image">
+        <img src="/assets/images/contact/profile-photo.png">
+      </div>
+      <div class="text">
 <ul style="list-style-type: none">
-   <li>Contact: Brandon Allen</li>
+   <li><a href="https://abmi.ca/">Alberta Biodiversity Monitoring Institute</a></li>
    <li>Email: brandon.allen@ualberta.ca</li>
-   <li>Website: <a href="https://beallen.github.io/">https://beallen.github.io/</a></li>
+   <li>Contact: <a href="https://beallen.github.io/">Brandon Allen</a></li>
 </ul>
-
-
-
+      </div>
+    </div>
+  </body>
+</html>
