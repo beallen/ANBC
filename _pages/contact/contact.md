@@ -32,7 +32,7 @@ img {
   <body>
     <div class="container">
       <div class="image">
-        <img src="/assets/images/contact/ANBC.png">
+        <img src="/ANBC/assets/images/contact/ANBC.png">
       </div>
       <div class="text">
 <ul style="list-style-type: none">
@@ -72,7 +72,7 @@ img {
   <body>
     <div class="container">
       <div class="image">
-        <img src="/assets/images/contact/profile-photo.png">
+        <img src="/ANBC/assets/images/contact/profile-photo.png">
       </div>
       <div class="text">
 <ul style="list-style-type: none">
