@@ -8,8 +8,7 @@ header:
   image: /assets/images/contact/header.png
 ---
 
-<img src= "/assets/images/contact/ANBC.png"
-        align="left">
+<img src= "/assets/images/contact/ANBC.png" align="left">
 
 <br>
 <br>
@@ -32,15 +31,13 @@ header:
 <br>
 <br>
 
-<img src= "/assets/images/contact/ABMI.jpg"
-        align="left">
+<img src= "/assets/images/contact/ABMI.jpg" align="left">
 
 <br>
 <br>
 <br>
 
 <ul style="list-style-type: none">
-   <li>Alberta Biodiversity Monitoring Institute</li>
    <li>Contact: Brandon Allen</li>
    <li>Email: brandon.allen@ualberta.ca</li>
    <li>Website: <a href="https://beallen.github.io/">https://beallen.github.io/</a></li>
