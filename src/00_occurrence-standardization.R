@@ -1,7 +1,7 @@
 #
 # Title: Cleaning of species data and creation of range maps
 # Created: March 21st, 2023
-# Last Updated: April 18th, 2023
+# Last Updated: May 28th, 2023
 # Author: Brandon Allen
 # Objectives: Clean and create the basic summaries for the set of species we are reporting on
 # Keywords: Notes, Species data, Range maps
@@ -103,10 +103,10 @@ aca.data <- merge.data.frame(aca.data, site.lookup[site.lookup$Project == "ACA",
 GBIF.data <- read.csv("data/base/species/GBIF_observationdata.csv")
 
 # Filter entries to the species of interest
-GBIF.data <- GBIF.data[GBIF.data$stateProvince %in% c("Alberta", "British Columbia", "Saskatchewan",
-                                                                           "Northwest Territories", "Yukon Territory"), ]
+GBIF.data <- GBIF.data[GBIF.data$stateProvince %in% c("Alberta"), ]
 GBIF.data <- GBIF.data[GBIF.data$species %in% spp.lookup$Species, ]
-GBIF.data <- GBIF.data[GBIF.data$year >= 2000, ] # We only have footprint information starting in 2010.
+GBIF.data <- GBIF.data[GBIF.data$year >= 2000, ] # Include specimens start in 2000
+GBIF.data <- GBIF.data[GBIF.data$institutionCode == "iNaturalist", ]
 GBIF.data <- GBIF.data[!is.na(GBIF.data$decimalLatitude), ] # Remove missing coordinates
 GBIF.data$coordinateUncertaintyInMeters[is.na(GBIF.data$coordinateUncertaintyInMeters)] <- 1 # If we don't have coordinate uncertainty, keep. We don't have this information for the other data sets anyways. 
 GBIF.data <- GBIF.data[GBIF.data$coordinateUncertaintyInMeters <= 100, ] # As we are using climate data (1km raster, we can have up to 100m uncertainty)
@@ -138,7 +138,7 @@ colnames(GBIF.data) <- c("Project", "SiteID", "Species", "Year","Latitude", "Lon
 strickland.data <- read.csv("data/base/species/Strickland_observationdata.csv")
 
 # Filter entries to the species of interest
-strickland.data <- strickland.data[strickland.data$stateProvince %in% c("Alberta", "British Columbia", "Saskatchewan"), ]
+strickland.data <- strickland.data[strickland.data$stateProvince %in% c("Alberta"), ]
 strickland.data <- strickland.data[strickland.data$species %in% spp.lookup$Species, ]
 strickland.data <- strickland.data[strickland.data$year >= 2000, ] # we only have footprint information starting in 2010. 
 strickland.data <- strickland.data[!is.na(strickland.data$decimalLatitude), ] # Remove missing coordinates
@@ -206,15 +206,12 @@ library(MetBrewer)
 library(sf)
 
 # Load data
-canada.shapefile <- read_sf("data/base/gis/boundaries/Canada/lpr_000b16a_e.shp")
+load("data/base/mapping/provincial-boundary.Rdata")
 load("data/processed/species/species-long-form.Rdata")
 spp.lookup <- read.csv("data/lookup/species-lookup.csv")
 spp.lookup <- spp.lookup[spp.lookup$Reporting, ]
 
 spp.lookup$Species[!(spp.lookup$Species %in% unique(spp.data$Species))]
-
-# Subset the Canada shapefile to the relevant provinces
-canada.shapefile <- canada.shapefile[canada.shapefile$PRUID %in% c(47, 48, 59, 60, 61), ]
 
 ##########################
 # Field Survey Locations #
