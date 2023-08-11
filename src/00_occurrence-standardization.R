@@ -167,7 +167,8 @@ colnames(strickland.data) <- c("Project", "SiteID", "Species","Year", "Latitude"
 #############
 
 # Load data
-anbc.data <- read_excel("data/base/species/ANBC_monitoringdata_2018.xlsx", sheet = "combined")
+nbdc.data <- read_excel("data/base/species/NBDC_monitoringdata_2022.xlsx", sheet = "Rawdata")
+nbdc.coordinates <- read_excel("data/base/species/NBDC_monitoringdata_2022.xlsx", sheet = "Coordinates")
 
 # Filter entries to the species of interest
 anbc.data <- anbc.data[anbc.data$Species %in% spp.lookup$Species, ]
