@@ -1,7 +1,7 @@
 #
 # Title: Cleaning of species data and creation of range maps
 # Created: March 21st, 2023
-# Last Updated: May 28th, 2023
+# Last Updated: August 11th, 2023
 # Author: Brandon Allen
 # Objectives: Clean and create the basic summaries for the set of species we are reporting on
 # Keywords: Notes, Species data, Range maps
@@ -96,11 +96,11 @@ aca.data$CoordCertainty <- NA
 aca.data <- merge.data.frame(aca.data, site.lookup[site.lookup$Project == "ACA", c("SiteID", "Latitude", "Longitude")], by = "SiteID")
 
 #################### Because this is observation data, there will be lots of locations. 
-# GBIF Data # Just filter and use the coordinates stored in the raw data. 
+# iNaturalist Data # Just filter and use the coordinates stored in the raw data. 
 #################### This will be used for the climate distributions, so anytime after 2000 is appropriate.
 
 # Load data
-GBIF.data <- read.csv("data/base/species/GBIF_observationdata.csv")
+GBIF.data <- read.csv("data/base/species/iNaturalist_observationdata.csv")
 
 # Filter entries to the species of interest
 GBIF.data <- GBIF.data[GBIF.data$stateProvince %in% c("Alberta"), ]
@@ -115,7 +115,7 @@ GBIF.data <- GBIF.data[GBIF.data$coordinateUncertaintyInMeters <= 100, ] # As we
 # be treated as separate survey events.
 
 # Create unique site IDs
-GBIF.data$Project <- "GBIF"
+GBIF.data$Project <- "iNaturalist"
 GBIF.data$SiteID <- paste0(GBIF.data$decimalLatitude, 
                                  GBIF.data$decimalLongitude, 
                                  GBIF.data$year)
@@ -162,6 +162,27 @@ strickland.data$SiteID <- strickland.site.lookup$Site[match(strickland.data$Site
 strickland.data <- strickland.data[, c("Project", "SiteID", "species", "year","decimalLatitude", "decimalLongitude", "coordinateUncertaintyInMeters")]
 colnames(strickland.data) <- c("Project", "SiteID", "Species","Year", "Latitude", "Longitude", "CoordCertainty")
 
+#############
+# NBDC Data #
+#############
+
+# Load data
+anbc.data <- read_excel("data/base/species/ANBC_monitoringdata_2018.xlsx", sheet = "combined")
+
+# Filter entries to the species of interest
+anbc.data <- anbc.data[anbc.data$Species %in% spp.lookup$Species, ]
+
+# Standardize
+anbc.data <- anbc.data[, c("Project", "SiteID", "Species")]
+anbc.data$Year <- 2018
+anbc.data <- merge.data.frame(anbc.data, site.lookup[site.lookup$Project == "ANBC", c("SiteID", "Latitude", "Longitude")], by = "SiteID")
+
+# Correct the name for Megachile melanophaea
+anbc.data$Species[anbc.data$Species == "Megachile melanophea"] <- "Megachile melanophaea"
+
+# Add coordinate uncertainty
+anbc.data$CoordCertainty <- NA
+
 ###########
 # Combine #
 ###########
@@ -186,10 +207,6 @@ save(spp.data, file = "data/processed/species/species-long-form.Rdata")
 
 rm(list=ls())
 gc()
-
-##############
-# Range Maps # Two versions, one should contain all of the surrounding provinces (regional)
-############## Second version should be Alberta only.
 
 ##############
 # Range Maps # Note: All bee species are identified at the ANBC sites. AEP and ACA only identified bumble bees. Remaining are observation data
@@ -218,7 +235,9 @@ spp.lookup$Species[!(spp.lookup$Species %in% unique(spp.data$Species))]
 ##########################
 
 site.locations <- spp.data[!duplicated(spp.data[, c("Project", "SiteID", "Year", "Latitude", "Longitude")]), ]
-write.csv(site.locations[, c("Project", "SiteID", "Year", "Latitude", "Longitude")], file = "data/lookup/site-list-GIS-extraction_A.csv", row.names = FALSE)
+
+# Site locations for ACA, ANBC, and EPA were already saved.
+# write.csv(site.locations[, c("Project", "SiteID", "Year", "Latitude", "Longitude")], file = "data/lookup/site-list-GIS-extraction.csv", row.names = FALSE)
 
 # Create a map of field surveys
 data.projected <- st_as_sf(x = spp.data, 
@@ -285,28 +304,28 @@ anbc.pa$SiteID <- rownames(anbc.pa)
 anbc.pa <- merge.data.frame(site.locations[site.locations$Project == "ANBC", ], anbc.pa, by = "SiteID")
 
 # Presence only
-spp.presence <- spp.data[spp.data$Project %in% c("GBIF", "Strickland"), ]
+spp.presence <- spp.data[spp.data$Project %in% c("iNaturalist", "Strickland"), ]
 spp.presence <- table(spp.presence$SiteID, spp.presence$Species, spp.presence$Project)
 
-GBIF.presence <- spp.presence[, , "GBIF"]
+GBIF.presence <- spp.presence[, , "iNaturalist"]
 class(GBIF.presence) <- "matrix"
 GBIF.presence <- as.data.frame(GBIF.presence)
-missing.columns <- colnames(anbc.pa)[-c(1:6)][!(colnames(anbc.pa)[-c(1:6)] %in% colnames(GBIF.presence))]
+missing.columns <- colnames(anbc.pa)[-c(1:7)][!(colnames(anbc.pa)[-c(1:7)] %in% colnames(GBIF.presence))]
 missing.columns <- matrix(data = 0, nrow = nrow(GBIF.presence), ncol = length(missing.columns), 
                           dimnames = list(rownames(GBIF.presence), missing.columns))
 GBIF.presence <- cbind(GBIF.presence, missing.columns)
-GBIF.presence <- GBIF.presence[, colnames(anbc.pa)[-c(1:6)]]
+GBIF.presence <- GBIF.presence[, colnames(anbc.pa)[-c(1:7)]]
 GBIF.presence$SiteID <- rownames(GBIF.presence)
-GBIF.presence <- merge.data.frame(site.locations[site.locations$Project == "GBIF", ], GBIF.presence, by = "SiteID")
+GBIF.presence <- merge.data.frame(site.locations[site.locations$Project == "iNaturalist", ], GBIF.presence, by = "SiteID")
 
 strickland.presence <- spp.presence[, , "Strickland"]
 class(strickland.presence) <- "matrix"
 strickland.presence <- as.data.frame(strickland.presence)
-missing.columns <- colnames(anbc.pa)[-c(1:6)][!(colnames(anbc.pa)[-c(1:6)] %in% colnames(strickland.presence))]
+missing.columns <- colnames(anbc.pa)[-c(1:7)][!(colnames(anbc.pa)[-c(1:7)] %in% colnames(strickland.presence))]
 missing.columns <- matrix(data = 0, nrow = nrow(strickland.presence), ncol = length(missing.columns), 
                           dimnames = list(rownames(strickland.presence), missing.columns))
 strickland.presence <- cbind(strickland.presence, missing.columns)
-strickland.presence <- strickland.presence[, colnames(anbc.pa)[-c(1:6)]]
+strickland.presence <- strickland.presence[, colnames(anbc.pa)[-c(1:7)]]
 strickland.presence$SiteID <- rownames(strickland.presence)
 strickland.presence <- merge.data.frame(site.locations[site.locations$Project == "Strickland", ], strickland.presence, by = "SiteID")
 
@@ -332,7 +351,7 @@ for (species in spp.lookup$Species) {
   }
   
   # Filter the presence only component of the data
-  spp.map <- species.wide[!(species.wide$Project %in% c("GBIF", "Strickland") & species.wide[, species] == 0), ]
+  spp.map <- species.wide[!(species.wide$Project %in% c("iNaturalist", "Strickland") & species.wide[, species] == 0), ]
 
   # If the species is in the genus Bombus, we can use the Presence/Absence of ACA, AEP, ANBC plus presence only
   # Otherwise, we need to exclude the presence/absence of AEP as they only identified Bombus
@@ -389,7 +408,7 @@ ggsave(filename = paste0("results/figures/species/", species, "/range-map.png"),
 for (species in spp.lookup$Species) {
   
   # Filter the presence only component of the data
-  spp.map <- species.wide[!(species.wide$Project %in% c("GBIF", "Strickland") & species.wide[, species] == 0), ]
+  spp.map <- species.wide[!(species.wide$Project %in% c("iNaturalist", "Strickland") & species.wide[, species] == 0), ]
   
   # If the species is in the genus Bombus, we can use the Presence/Absence of ACA, AEP, ANBC plus presence only
   # Otherwise, we need to exclude the presence/absence of AEP as they only identified Bombus
